@@ -1,10 +1,11 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const apiKey = "NEXT_PUBLIC_STRIPE_SECRET_KEY";
+const stripe = new Stripe(process.env[apiKey]);
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    console.log(req.body);
+    // console.log(req.body);
     try {
       const params = {
         submit_type: "pay",
@@ -24,8 +25,7 @@ export default async function handler(req, res) {
             )
             .replace("-webp", ".webp");
 
-          console.log("Image:", newImage);
-          
+        //   console.log("Image:", newImage);
 
           return {
             price_data: {
